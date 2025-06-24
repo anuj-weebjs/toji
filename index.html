@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Toji Fushiguro</title>
+  <style>
+    /* ✅ Video background styling */
+    #bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;       /* fills screen, may crop a little */
+  z-index: -1;
+  pointer-events: none;    /* prevent mouse interaction */
+}
+
+
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .profile-img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .name {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+
+    .search-area {
+      margin-top: 20px;
+    }
+
+    .search-area input {
+      padding: 10px;
+      width: 200px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+    }
+
+    .search-area button {
+      padding: 10px 15px;
+      border-radius: 6px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    #response {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Correct place for the video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="toji.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="container">
+    <div class="card">
+      <img src="toji_action.png" alt="Toji Action Pose" class="profile-img" />
+      <h1 class="name">Simon</h1>
+    </div>
+
+    <div class="search-area">
+      <input type="text" id="userInput" placeholder="Ask me anything..." onkeydown="checkEnter(event)" />
+      <button type="button" onclick="askQuestion()">Ask</button>
+      <div id="response"></div>
+    </div>
+  </div>
+
+  <script>
+    function askQuestion() {
+      const input = document.getElementById('userInput').value;
+      const response = document.getElementById('response');
+      if (input.trim() === '') {
+        response.innerText = "Please type something.";
+      } else {
+        response.innerText = "You asked: " + input;
+      }
+    }
+
+    function checkEnter(event) {
+      if (event.key === "Enter") {
+        askQuestion();
+      }
+    }
+  </script>
+</body>
+</html>
